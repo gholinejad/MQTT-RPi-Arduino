@@ -10,7 +10,7 @@ def on_connect(client, userdata, flags, rc):
    print("Connected with result code " + str(rc)) 
    # Subscribing in on_connect() means that if we lose the connection and 
    # reconnect then subscriptions will be renewed. 
-   client.subscribe("/leds/pi") 
+   client.subscribe("/pi") 
 
 
 
@@ -21,7 +21,7 @@ def on_message(client, userdata, msg):
     flag=1 
     print(msg.topic+" "+str( msg.payload))
     # Check if this is a message for the Pi LED. 
-    if msg.topic == '/leds/pi': 
+    if msg.topic == '/pi': 
        # Look at the message data and perform the appropriate action.
         print("thats for pi? thanks\n")
     flag=0
@@ -42,4 +42,4 @@ print('Script is running, press Ctrl-C to quit...')
 while True: 
    # Look for a change from high to low value on the button input to 
    time.sleep(2)
-   client.publish('/leds/esp8266', 'TOGGLE') 
+   client.publish('/espn1', 'TOGGLE') 
